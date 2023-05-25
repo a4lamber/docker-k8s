@@ -11,7 +11,10 @@ Submit the secret message and command(s) given as your answer.
 
 ```bash
 # spin up a container
-docker container run -it devopsdockeruh/simple-web-service:ubuntu
+docker container run -it \                             
+                    -d \
+                    --name 1.3secret_msg \
+                    devopsdockeruh/simple-web-service:ubuntu
 ```
 
 Let's check out the what's going on from our local machine
@@ -20,7 +23,9 @@ Let's check out the what's going on from our local machine
 docker container logs -f <container_hashkey>
 ```
 
-Output is
+> Note: You can also identify the container by its name, which is more human friendly.
+
+Output is the following, we can see that we are writing stuff to the `text.log` file
 ```plaintext
 Starting log output
 Wrote text to /usr/src/app/text.log
@@ -46,7 +51,6 @@ docker container exec -it <container_hashkey> bash
 # print out the last 5 lines of the "text.log" and follows it
 tail -n 5 -f ./text.log 
 ```
-
 
 Output is 
 ```
